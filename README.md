@@ -13,7 +13,7 @@ https://www.youtube.com/watch?v=hDtmQcjm81c
 Getting started
 ---------------
 
-* Install [Redis](http://redis.io) (our primary database).
+* Install [Redis](//redis.io) (our primary database).
 
   You should definitely use the Redis documentation anytime you have questions about what a command does, or, what kinds of commands you can use for a particular kind of data structure.
 
@@ -76,7 +76,7 @@ Design Philosophy
 
     Every time you add a dependency, check it into git. This is a deployed
     website. We need to keep things predictable. Further, this is an official
-    recommendation by npm ([FAQ](https://www.npmjs.org/doc/faq.html)).
+    recommendation by npm ([FAQ](//www.npmjs.org/doc/faq.html)).
 
     This is definitely not what Hack Reactor taught us. But if you read the link above you might feel the way we do. Or at least the way Alex does.
 
@@ -97,7 +97,7 @@ Understanding the code
 
   Every node in the graph (this is an oversimplification, by the way), does just a few things. It carries around a piece of a file. It communicates with other nodes. When it communicates with other nodes, it asks if those other nodes if they have a piece of the file that it is trying to get. It also asks other nodes if they know of other nodes that also have a piece of the file that it is looking for. While it's interacting with another node, it goes ahead and records a bunch of information regarding what other nodes are nearby and what kinds of files they contain. The other node we're communicating with basically does all the same things, and then, if it's appropriate, they actually hand off the pieces of file that they have.
 
-  They way that the information is sorted around nearby nodes that do, or might have a piece of the file that you are looking for has been highly optimized, and now is probably a great time, if you haven't done it yet already, to read [BEP 5](www.bittorrent.org/beps/bep_0005.html), and also check out the [Kademlia](http://en.wikipedia.org/wiki/Kademlia) algorithm that BitTorrent protocol is based on, assuming you're interested in know how the whole thing works.
+  They way that the information is sorted around nearby nodes that do, or might have a piece of the file that you are looking for has been highly optimized, and now is probably a great time, if you haven't done it yet already, to read [BEP 5](//www.bittorrent.org/beps/bep_0005.html), and also check out the [Kademlia](//en.wikipedia.org/wiki/Kademlia) algorithm that BitTorrent protocol is based on, assuming you're interested in know how the whole thing works.
 
   It's worth mentioning that BitTorrent protocol is actually deprecated, and the current iteration of the BitTorrent network is now running off of DHT protocol. DHT stands for Distibuted Hash Table. It is a graph of nodes that each have many hash tables of information concerning the whereabouts and contents of other nodes.
 
@@ -126,7 +126,7 @@ Understanding the code
   Our worker (`node workers/masterCrawler.js`) is responsible for crawling the
   BitTorrent DHT network and generating the location stats. It implements the
   necessary parts of the BitTorrent DHT protocol (*aka
-  [BEP 5](www.bittorrent.org/beps/bep_0005.html)*). The low-level DHT
+  [BEP 5](//www.bittorrent.org/beps/bep_0005.html)*). The low-level DHT
   interaction is implemented in `crawl.js`. `masterCrawler.js` simply glues all
   the magic together and spams the Redis database.
 
@@ -138,17 +138,17 @@ Understanding the code
 
 * Client:
 
-  The client uses [AngularJS](https://angularjs.org/) and interacts with our
+  The client uses [AngularJS](//angularjs.org/) and interacts with our
   server-side API. `main.js` is a good starting point. Make sure to run `grunt`
   during development, since we require the compiled `main.min.js` file. A
   source map is in place for debugging.
 
 ### A word about Redis
 
-[Redis](http://redis.io) is a key-value store. It is incredibly fast, but quite
+[Redis](//redis.io) is a key-value store. It is incredibly fast, but quite
 dumb (compared to MongoDB). You can think of it as a POJO. It supports some
 really sophisticated data-structures, like
-[HyperLogLog](http://antirez.com/news/75). We use HyperLogLog in order to
+[HyperLogLog](//antirez.com/news/75). We use HyperLogLog in order to
 anonymously store peers in a memory-effcient way. MongoDB doesn't fit our
 use-case for two reasons:
 
@@ -164,13 +164,13 @@ use-case for two reasons:
   your memory from time to time using `sudo purge` is a good idea.
 
 Redis can also be used for integrating a simple search functionality by
-building out an [inverted index](en.wikipedia.org/wiki/Inverted_index).
+building out an [inverted index](//en.wikipedia.org/wiki/Inverted_index).
 
 ### The DHT protocol implementation
 
-The [BitTorrent DHT protocol](www.bittorrent.org/beps/bep_0005.html) is based
+The [BitTorrent DHT protocol](//www.bittorrent.org/beps/bep_0005.html) is based
 on UDP, which is a connection-less, low-level protocol. We use the Node.JS
-[dgram](nodejs.org/api/dgram.html) library for this. More abstract ways of
+[dgram](//nodejs.org/api/dgram.html) library for this. More abstract ways of
 interacting with the BitTorrent DHT network exist, but they are pretty slow and
 and don't fit our use-case, since they don't really crawl the network for all
 peers, but try to find a certain number of them (like a BitTorrent client
@@ -190,12 +190,12 @@ We are currently using "_A NERD_"-stack:
 Contributions
 -------------
 
-To make everyone's life easier we have created some [guidelines](https://github.com/Trrnts/Trrnts/blob/master/CONTRIBUTING.md).
+To make everyone's life easier we have created some [guidelines](//github.com/Trrnts/Trrnts/blob/master/CONTRIBUTING.md).
 
 Authors
 -------
 
-- Alexander Gugel [GitHub](https://github.com/alexanderGugel)
-- Antonio Grimaldo [GitHub](https://github.com/grimi94)
-- Josh Wyatt [GitHub](https://github.com/joshWyatt)
-- Salman Khan [GitHub](https://github.com/smk1992)
+- Alexander Gugel [GitHub](//github.com/alexanderGugel)
+- Antonio Grimaldo [GitHub](//github.com/grimi94)
+- Josh Wyatt [GitHub](//github.com/joshWyatt)
+- Salman Khan [GitHub](//github.com/smk1992)
